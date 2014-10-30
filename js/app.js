@@ -21,7 +21,6 @@ app.directive("navTabs", function() {
 
 app.filter("sanitize",['$sce', function($sce) {
 	return function(htmlCode){
-		console.log('filtering');
 		return $sce.trustAsHtml(htmlCode);
 	}
 }]);
@@ -33,7 +32,7 @@ app.controller("articleLoader",function($scope) {
 	$scope.indexLoaded = false;
 	$scope.articles = [];
 
-	indexPath = 'articles/index.json/';
+	indexPath = 'articles/index.json';
 	$scope.onLoad = function(data) {
 		$scope.indexLoaded = true;
 		$scope.articleIndex = data.articles.sort().reverse();
