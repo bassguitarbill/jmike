@@ -1,0 +1,9 @@
+<section>
+	<div ng-controller="articleLoader">
+		<div ng-repeat="article in articles track by $index">
+			<h3>{{article.date}}</h3>
+			<h2>{{article.title}}</h2>
+			<div ng-bind-html="article.content | sanitize"></div>
+		</div>
+	</div>
+</section>
