@@ -33,7 +33,7 @@ app.controller("articleLoader",function($scope) {
 	$scope.indexLoaded = false;
 	$scope.articles = [];
 
-	indexPath = '/articles/index.json/';
+	indexPath = 'articles/index.json/';
 	$scope.onLoad = function(data) {
 		$scope.indexLoaded = true;
 		$scope.articleIndex = data.articles.sort().reverse();
@@ -43,7 +43,7 @@ app.controller("articleLoader",function($scope) {
 	$scope.loadArticles = function(){
 		var leftToLoad = $scope.articleIndex.length;
 		function loadArticle(index){
-			$.get('/articles/'+$scope.articleIndex[index],
+			$.get('articles/'+$scope.articleIndex[index],
 				function(data){
 					leftToLoad--;
 					$scope.articles[index] = data;
