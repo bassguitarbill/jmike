@@ -47,22 +47,15 @@ app.controller("articleLoader",function($scope, $http) {
 	}
 	$scope.loadArticle = function(index){
 		if(!$scope.articles[index]){
-		console.log("index: " + index);
 		$http.get('articles/'+$scope.articleIndex[index]).success(
 			function(data){
-//				leftToLoad--;
-				console.log('loaded article ' + index);
 				$scope.articles[index] = data;
-				console.log($scope.articles);
-//				if(leftToLoad <= 0)
-//					articlesLoaded();
 			}
 		);
 		}
 	}
 	
 	$scope.loadArticles = function(count){
-		console.log(count);
 		for(var x=0; x<count && x<$scope.articleIndex.length; x++)
 			$scope.loadArticle(x);
 	}
