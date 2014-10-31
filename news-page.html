@@ -5,5 +5,12 @@
 			<h2>{{article.title}}</h2>
 			<div ng-bind-html="article.content | sanitize"></div>
 		</div>
+		<button type="button" class="btn btn-default btn-large" ng-click="loadAnotherArticle()">
+			<span class="glyphicon glyphicon-chevron-down"></span> Load more
+		</button>
+
+		<button type="button" class="btn btn-default btn-large">
+			<span class="glyphicon glyphicon-chevron-up"></span> Go to top
+		</button>
 	</div>
 </section>

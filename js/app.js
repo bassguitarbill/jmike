@@ -26,39 +26,47 @@ app.filter("sanitize",['$sce', function($sce) {
 }]);
 /* Article controller */
 
-app.controller("articleLoader",function($scope) {
+app.controller("articleLoader",function($scope, $http) {
 
 	$scope.articleIndex = [];
 	$scope.indexLoaded = false;
 	$scope.articles = [];
 
+	$scope.count = 1;
+
 	indexPath = 'articles/index.json';
 	$scope.onLoad = function(data) {
 		$scope.indexLoaded = true;
 		$scope.articleIndex = data.articles.sort().reverse();
-		$scope.loadArticles();
+		$scope.loadArticles($scope.count);
+	}
+
+	$scope.loadAnotherArticle = function() {
+		$scope.count += 1;
+		$scope.loadArticles($scope.count);
+	}
+	$scope.loadArticle = function(index){
+		if(!$scope.articles[index]){
+		console.log("index: " + index);
+		$http.get('articles/'+$scope.articleIndex[index]).success(
+			function(data){
+//				leftToLoad--;
+				console.log('loaded article ' + index);
+				$scope.articles[index] = data;
+				console.log($scope.articles);
+//				if(leftToLoad <= 0)
+//					articlesLoaded();
+			}
+		);
+		}
 	}
 	
-	$scope.loadArticles = function(){
-		var leftToLoad = $scope.articleIndex.length;
-		function loadArticle(index){
-			$.get('articles/'+$scope.articleIndex[index],
-				function(data){
-					leftToLoad--;
-					$scope.articles[index] = data;
-					if(leftToLoad <= 0)
-						articlesLoaded();
-				}
-			);
-		}
-		for(var x=0; x<$scope.articleIndex.length; x++)
-			loadArticle(x);
+	$scope.loadArticles = function(count){
+		console.log(count);
+		for(var x=0; x<count && x<$scope.articleIndex.length; x++)
+			$scope.loadArticle(x);
 	}
 
-	function articlesLoaded(){
-		console.log('Done loading articles!');
-	}
-
-	$.get(indexPath,$scope.onLoad);
+	$http.get(indexPath).success($scope.onLoad);
 
 });
