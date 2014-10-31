@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -7,21 +8,21 @@
 	<body ng-app="jmikeApp">
 		<nav-tabs></nav-tabs>
 		<div class="jumbotron" id="homeJumbotron">
-			<div class="container">
-				<br/>
-				<br/>
-				<br/>
-				<h1>Jersey Mike Rossi</h1>
-				<p>U.S. Ski Team</p>
-			</div>
+			<br/>
+			<br/>
+			<br/>
+			<h1>Jersey Mike Rossi</h1>
+			<p>U.S. Ski Team</p>
 		</div>
-		<home-page ng-show="tab.isSet('home')"></home-page>
-		<news-page ng-show="tab.isSet('news')"></news-page>
-		<biography-page ng-show="tab.isSet('biography')"></biography-page>
-		<photos-page ng-show="tab.isSet('photos')"></photos-page>
-		<videos-page ng-show="tab.isSet('videos')"></videos-page>
-		<sponsors-page ng-show="tab.isSet('sponsors')"></sponsors-page>
-		<!--<contact-page ng-show="tab.isSet('contact')"></contact-page> -->
+		<div class="container">
+			<home-page ng-show="tab.isSet('home')"></home-page>
+			<news-page ng-show="tab.isSet('news')"></news-page>
+			<biography-page ng-show="tab.isSet('biography')"></biography-page>
+			<photos-page ng-show="tab.isSet('photos')"></photos-page>
+			<videos-page ng-show="tab.isSet('videos')"></videos-page>
+			<sponsors-page ng-show="tab.isSet('sponsors')"></sponsors-page>
+			<!--<contact-page ng-show="tab.isSet('contact')"></contact-page> -->
+		</div>
 		<div class="footer text-danger">This page is in dev! Please ignore almost everything on it!</div>
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="bower_components/angularjs/angular.js"></script>
